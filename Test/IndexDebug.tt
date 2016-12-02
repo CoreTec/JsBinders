@@ -1,0 +1,38 @@
+﻿<#@ template language="C#"  hostspecific="True" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Web" #>
+<#@ assembly name="System.Net.Http" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Web" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Net.Http" #>
+<#@ output extension="html" #>
+<#
+    var html= File.ReadAllText(root+"Test\\Index.html");
+    html=html.Replace("ext-all.js","ext-all-debug.js");
+    html=html.Replace("<script src=\"\\Scripts\\vp.min.js\"></script>",
+                    string.Join("\n\t",GetJSFiles(false).Select(q=>"<script src='\\"+q+"'></script>")));
+    Write(html);
+#>
+<#+
+    string _root;
+    string root{get{ return _root??(_root= GetRoot());}}
+    string GetRoot()
+    {
+        var res=Host.ResolvePath("");
+        var iq=res.IndexOf("JsBinders");
+        return res.Substring(0,iq+"JsBinders".Length)+"\\";
+    }
+
+    IEnumerable<string> GetJSFiles(bool fullName)
+    {
+        return Directory.EnumerateFiles(root+"\\Scripts\\", "*.js", SearchOption.AllDirectories)
+                        .Where(q=>!q.Contains("\\0_Libs\\") && !q.Contains("_references.js") && !q.Contains("vp.min.js"))
+                        .OrderBy(q => q)
+                        .Select(q=>fullName?q:q.Substring(root.Length+1));
+    }
+#>

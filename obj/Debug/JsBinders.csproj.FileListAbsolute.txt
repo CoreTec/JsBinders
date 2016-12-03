@@ -1,6 +1,0 @@
-C:\git\JsBinders\bin\JsBinders.dll.config
-C:\git\JsBinders\bin\JsBinders.dll
-C:\git\JsBinders\bin\JsBinders.pdb
-C:\git\JsBinders\obj\Debug\JsBinders.csprojResolveAssemblyReference.cache
-C:\git\JsBinders\obj\Debug\JsBinders.dll
-C:\git\JsBinders\obj\Debug\JsBinders.pdb

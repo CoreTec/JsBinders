@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,17 +61,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\Binder2HTML\DOMFactory.js" />
+    <Content Include="Scripts\Binder2HTML\Setters.js" />
     <Content Include="Scripts\Binder2HTML\Element.js" />
-    <Content Include="Scripts\Binders\Const.js" />
+    <Content Include="Scripts\Binders\0_Const.js" />
     <Content Include="Scripts\Binders\Extensions\Debug.js" />
     <Content Include="Scripts\Binders\Extensions\Sugar.js" />
     <Content Include="Scripts\Binders\Extensions\Output.js" />
-    <Content Include="Scripts\Binders\FBinder.js" />
-    <Content Include="Scripts\Binders\CallStack.js" />
-    <Content Include="Scripts\Binders\Binder.js" />
+    <Content Include="Scripts\Binders\2_FBinder.js" />
+    <Content Include="Scripts\Binders\0_CallStack.js" />
+    <Content Include="Scripts\Binders\1_Binder.js" />
     <Content Include="Scripts\Binders\Functions\Template.js" />
     <Content Include="Scripts\Binders\Functions\Field.js" />
     <Content Include="Scripts\OnLoad.js" />
+    <Content Include="Scripts\0_Tools\Apply.js" />
     <Content Include="Test\Index.html" />
     <Content Include="Test\IndexDebug1.html">
       <AutoGen>True</AutoGen>
@@ -99,9 +103,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Tools\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

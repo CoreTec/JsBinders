@@ -1,0 +1,4 @@
+# VS generated files
+*.cache
+*.dll
+*.pdb

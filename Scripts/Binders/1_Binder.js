@@ -4,9 +4,12 @@
     this._value = value; 
 }
 Binder.prototype = Object.create({
-        fireUpdate: function () {
-            for (var q = this.handlers.length; q--;) 
-                this.handlers[q].call(this, this._value);        
+        fireUpdate: function (source,oldvalue) {
+            for (var q = this.handlers.length; q--;) {
+                var H = this.handlers[q];
+                if (H === source) continue;
+                H.call(this, this._value, oldvalue);
+            }      
         },
         detach: function (fn) {
             this.handlers.splice(this.handlers.indexOf(fn),1);
@@ -15,11 +18,12 @@ Binder.prototype = Object.create({
             this.handlers.push(fn);
             //fn.call(this, this.value);
         },
-        set: function (value) {
+        set: function (value,source) {
             if (this._value === value) return NoChanges;
+            var old = this._value;
             this._value = value;
             this.version++;
-            this.fireUpdate();
+            this.fireUpdate(source,old);
         },
         get: function (callback) {
             if (callback)

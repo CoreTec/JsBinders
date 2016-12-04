@@ -34,7 +34,6 @@ apply(SingleBinder.prototype = Object.create(Binder.prototype),
         initArgumentBinder: function (binder, id) {
             var me = this;
             var version = null;
-            me.arguments[id] = binder._value;
             if (me.priority < binder.priority)
                 me.priority = binder.priority;
             var handler = function (value) {

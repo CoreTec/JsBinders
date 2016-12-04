@@ -12,5 +12,5 @@ Binder.prototype.fields = function () {
         this.field(arguments[q]);
 }
 Function.prototype.binder = function () {
-    return new Binder(this,arguments);
+    return Binder(this,arguments);
 };

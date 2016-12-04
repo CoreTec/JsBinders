@@ -1,6 +1,6 @@
 ﻿Binder.prototype.log = function (text) {
-    if (!text) text = 'Binder value changed to ';
-    this.passive(function (value) {
-        console.log(text, value);
+    if (!text) text = 'Value changed from %s to %s';
+    this.passive(function (value,old) {
+        console.log(text, value, old);
     });
 }

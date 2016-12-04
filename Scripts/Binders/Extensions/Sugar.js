@@ -3,9 +3,14 @@
     this.attach(fn);
 }
 Binder.prototype.field = function (name) {
-    return new FBinder(field, this, name);
+    var exist = this[name];
+    if (exist) return exist;
+    return this[name] = new SingleBinder(field, [this, name]);
 }
-
+Binder.prototype.fields = function () {
+    for (var q = arguments.length; q--;)
+        this.field(arguments[q]);
+}
 Function.prototype.binder = function () {
-    return new FBinder(this, Array.prototype.slice.call(arguments));
+    return new Binder(this,arguments);
 };

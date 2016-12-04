@@ -1,4 +1,5 @@
-﻿//ToDo: Optimize 
+﻿
+//ToDo: Optimize 
 //too many array operations
 function CallStack() {
     //assuming single thread JS

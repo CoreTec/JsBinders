@@ -1,14 +1,20 @@
-﻿
-function sum(a, b) { return +a + +b; }
-sum.set = function (val, a, b) { return [val/2,val/2]; }
+﻿function sum(a, b) { return +a + +b; }
+//ToDo: find a nicer way to delect constant arguments
+sum.set = function (val, a, b) {
+    if (this instanceof MultiBinder)
+        return [val / 2, val / 2];
+    if (this.argumentBinder.id==0)
+        return val - b;
+    return val - a;
+}
 
-var x = new Binder(1);
-var y = new Binder(1);
-var z = sum.binder(x, y);
+var m = Binder({x:0,y:0});
+m.fields('x', 'y');
+m.z = sum.binder(m.x, m.y);
+m.z2 = sum.binder(4, m.y);
+m.z3 = sum.binder(m.x, 7);
 
-x.log('x');
-y.log('y');
-z.log('z');
+m.log('model changed from %o to %o');
 
 window.onload = function () {
     document.body.add({
@@ -16,17 +22,48 @@ window.onload = function () {
         items: [
             {
                 type: 'input',
-                text: x
+                text: m.x,
             },
             ' + ',
             {
                 type: 'input',
-                text: y
+                text: m.y
             },
             ' = ',
             {
                 type: 'input',
-                text: z
+                text: m.z
+            }
+        ]
+    });
+    document.body.add({ type: 'br' });
+    document.body.add({
+        type: 'div',
+        items: [            
+            '4 + ',
+            {
+                type: 'input',
+                text: m.y
+            },
+            ' = ',
+            {
+                type: 'input',
+                text: m.z2
+            }
+        ]
+    });
+    document.body.add({ type: 'br' });
+    document.body.add({
+        type: 'div',
+        items: [
+            {
+                type: 'input',
+                text: m.x
+            },
+            ' + 7 = ',
+            {
+                type: 'input',
+                text: m.z3
             }
         ]
     });

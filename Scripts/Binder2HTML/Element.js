@@ -23,7 +23,7 @@ apply(HTMLElement.prototype, {
         var listener = this.listeners[name];
         var cfg = {
             setter: function (val) { setter.call(me, val); },
-            binder: binder,
+            binder:binder,
             listener: function (val) { listener.call(me, val); }
         };
         if (cfg.listener)

@@ -1,22 +1,28 @@
-﻿function Binder(value) {
-    this.version = 0;
+﻿function ValueBinder(value) {
     this.handlers = [];
-    this._value = value; 
+    this._value = value;
 }
+ValueBinder.prototype = 
 Binder.prototype = Object.create({
-        fireUpdate: function (source,oldvalue) {
-            for (var q = this.handlers.length; q--;) {
-                var H = this.handlers[q];
-                if (H === source) continue;
-                H.call(this, this._value, oldvalue);
-            }      
+        priority: 0,
+        version: 0,
+        fireUpdate: function (source, oldvalue) {
+            //To increase speed
+            if (!source)
+                for (var q = this.handlers.length; q--;) 
+                    this.handlers[q].call(this, this._value, oldvalue);                
+            else 
+                for (var q = this.handlers.length; q--;) {
+                    var H = this.handlers[q];
+                    if (H === source || H.scope === source) continue;
+                    H.call(this, this._value, oldvalue);
+                }
         },
         detach: function (fn) {
-            this.handlers.splice(this.handlers.indexOf(fn),1);
+            this.handlers.remove(fn);
         },
         attach: function (fn) {
             this.handlers.push(fn);
-            //fn.call(this, this.value);
         },
         set: function (value,source) {
             if (this._value === value) return NoChanges;

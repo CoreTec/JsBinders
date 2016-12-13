@@ -63,6 +63,7 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\0_Tools\Array.js" />
     <Content Include="Scripts\Binder2HTML\DOMFactory.js" />
+    <Content Include="Scripts\Binder2HTML\Picker.js" />
     <Content Include="Scripts\Binder2HTML\Setters.js" />
     <Content Include="Scripts\Binder2HTML\Element.js" />
     <Content Include="Scripts\Binders\2_SingleBinder.js" />

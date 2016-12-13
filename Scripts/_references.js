@@ -3,6 +3,7 @@
 /// <reference path="0_tools/array.js" />
 /// <reference path="binder2html/domfactory.js" />
 /// <reference path="binder2html/element.js" />
+/// <reference path="binder2html/picker.js" />
 /// <reference path="binder2html/setters.js" />
 /// <reference path="binders/0_binder.js" />
 /// <reference path="binders/0_callstack.js" />

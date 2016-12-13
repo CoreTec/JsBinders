@@ -1,9 +1,37 @@
 ﻿<html>
 <head>
     <title>Js Binders</title>
-    <script src="\Scripts\vp.min.js"></script>
+    <script src="\Scripts\binders.min.js"></script>
+    <script src="Test1.js"></script>
+    <style>
+        .button {
+            cursor: pointer;
+            padding: 1px;
+            margin: 0 2px;
+            display: inline-block;
+            border: 1px solid lightgray;
+        }
+        .button:hover{
+           background:lightgray;
+        }
+
+        .button.pressed{
+            background:green;
+        }
+        .checkbox:before{
+            display:inline-block;
+            content:'O ';
+        } 
+        .checkbox.pressed{
+            background:none;
+        }
+        .checkbox.pressed:before{
+            display:inline-block;
+            content:'X ';
+        }
+    </style>
 </head>
-<body>
+<body style="margin:0;padding:0;width:100%;height:100%;overflow:hidden">
 
 </body>
 </html>

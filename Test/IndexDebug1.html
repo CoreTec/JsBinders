@@ -3,10 +3,13 @@
     <title>Js Binders</title>
     <script src='\Scripts\0_Tools\Apply.js'></script>
 	<script src='\Scripts\0_Tools\Array.js'></script>
-	<script src='\Scripts\Binder2HTML\DOMFactory.js'></script>
-	<script src='\Scripts\Binder2HTML\Element.js'></script>
+	<script src='\Scripts\Binder2HTML\Base\0_DOMFactory.js'></script>
+	<script src='\Scripts\Binder2HTML\Base\1_Element.js'></script>
+	<script src='\Scripts\Binder2HTML\Base\1_Properties.js'></script>
+	<script src='\Scripts\Binder2HTML\Base\2_CSSProperties.js'></script>
+	<script src='\Scripts\Binder2HTML\Button.js'></script>
 	<script src='\Scripts\Binder2HTML\Picker.js'></script>
-	<script src='\Scripts\Binder2HTML\Setters.js'></script>
+	<script src='\Scripts\Binder2HTML\Textbox.js'></script>
 	<script src='\Scripts\Binders\0_Binder.js'></script>
 	<script src='\Scripts\Binders\0_CallStack.js'></script>
 	<script src='\Scripts\Binders\0_Const.js'></script>
@@ -19,9 +22,36 @@
 	<script src='\Scripts\Binders\Extensions\Sugar.js'></script>
 	<script src='\Scripts\Binders\Functions\Field.js'></script>
 	<script src='\Scripts\Binders\Functions\Template.js'></script>
-	<script src='\Scripts\OnLoad.js'></script>
+    <script src="Test1.js"></script>
+    <style>
+        .button {
+            cursor: pointer;
+            padding: 1px;
+            margin: 0 2px;
+            display: inline-block;
+            border: 1px solid lightgray;
+        }
+        .button:hover{
+           background:lightgray;
+        }
+
+        .button.pressed{
+            background:green;
+        }
+        .checkbox:before{
+            display:inline-block;
+            content:'O ';
+        } 
+        .checkbox.pressed{
+            background:none;
+        }
+        .checkbox.pressed:before{
+            display:inline-block;
+            content:'X ';
+        }
+    </style>
 </head>
-<body>
+<body style="margin:0;padding:0;width:100%;height:100%;overflow:hidden">
 
 </body>
 </html>

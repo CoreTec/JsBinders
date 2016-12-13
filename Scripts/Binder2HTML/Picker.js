@@ -1,19 +1,24 @@
 ﻿DOMFactory.picker = function (cfg) {
+    var label = new Binder(cfg.label);
+    var toggle = new Binder(false);
+    toggle.log();
     return {
         type: 'div',
         items: [
-            cfg.label,
             {
-                type: 'input',
-                text:cfg.display
+                type: 'span',
+                color:'red',
+                text: label
             },
             {
-                type: 'button',
-                text:cfg.value,
-                handler: function () {
-                    cfg.value.set(123);
-                    cfg.display.set('qwe')
-                }
+                type: 'input',
+                value:cfg.display
+            },
+            {
+                type: 'checkbox',
+                width:50,
+                text: 'test',
+                toggle: toggle
             }
         ]
     };

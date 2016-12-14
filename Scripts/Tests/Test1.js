@@ -25,7 +25,8 @@
                         pressed: m.isequal
                     },
                     {
-                        type:'b',
+                        type: 'div',
+                        fontWeight:'bold',
                         text:'Test1',
                         margin:'auto'
                     },

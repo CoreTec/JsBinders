@@ -14,3 +14,15 @@
             }
         }
     });
+
+
+if (!('flex' in document.documentElement.style)) {
+    apply(HTMLExtProperties, {
+        flex: function (val) {
+            this.style.msFlex = val;
+        },
+        flexFlow: function (val) {
+            this.style.msFlexFlow = val;
+        }
+    });
+}

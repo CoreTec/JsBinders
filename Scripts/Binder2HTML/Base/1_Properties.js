@@ -11,8 +11,8 @@
                             this[name] = val;
                         }
                     };
-            //ToDo: check compatibility
-            if (name in document.body.style)
+
+            if (name in document.documentElement.style)
                 return this[name] =
                     {
                         set: function (val) {

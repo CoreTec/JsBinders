@@ -1,7 +1,10 @@
 ﻿if (!Array.prototype.remove)
     Object.defineProperty(Array.prototype, 'remove', {
         value: function (el) {
-            this.splice(this.indexOf(el), 1);
+            var id = this.indexOf(el);
+            if (id === -1) return false;
+            this.splice(id, 1);
+            return true;
         },
         enumerable: false
     });
@@ -17,7 +20,7 @@ if (!Array.prototype.insert)
 if (!Array.prototype.contains)
     Object.defineProperty(Array.prototype, 'contains', {
         value: function (el) {
-           return this.indexOf(el) > 0;
+           return this.indexOf(el) !== -1;
         },
         enumerable: false
     });

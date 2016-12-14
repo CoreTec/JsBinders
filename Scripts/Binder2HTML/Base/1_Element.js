@@ -1,7 +1,17 @@
 ﻿HTMLBodyElement.prototype.rendered = true;
 Text.prototype.onRemove = function () { };
 
-apply(HTMLElement.prototype, { 
+apply(HTMLElement.prototype, {
+    apply: function (cfg) {
+        delete cfg.type;
+        if (cfg.cls instanceof Array) {
+            for (var q = cfg.cls.length; q--;)
+                this.set('cls', cfg.cls[q]);
+            delete cfg.cls;
+        }
+        for (var q in cfg)
+            this.set(q, cfg[q]);
+    },
     set: function (name, value) {
         var property = HTMLExtProperties.get(name);
         if (!property) return;
@@ -12,11 +22,12 @@ apply(HTMLElement.prototype, {
         var me = this,
             version,
             binder=value,
-            setter = function (val) { property.set.call(me, val); };
+            setter = function (val,old) { property.set.call(me, val,old); };
 
         if (property.onChange)
             property.onChange.call(this, function (val) {
-                binder.set(val, setter);
+                if (binder.set(val, setter) === Failed)
+                    setter(binder.value);
             });
         this.binders.push({
             attach: function () {
@@ -57,7 +68,7 @@ apply(HTMLElement.prototype, {
             this.children[q].onRemove();
     },
     add: function (cfg) {
-        var el = DOMFactory.get(cfg);
+        var el = DOMFactory.get(applyIf(cfg, this.defaults));
         this.appendChild(el);
         if (this.rendered)
             el.onRender();

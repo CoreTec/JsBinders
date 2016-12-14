@@ -1,29 +1,19 @@
 ﻿DOMFactory.button = function(cfg)
 {
-    var toggle = cfg.toggle;
-    delete cfg.toggle;
+    var pressed = cfg.pressed;
+    delete cfg.pressed;
 
-    var cls=cfg.cls||'';
-    cls+=' button';
+    if (!(cfg.cls instanceof Array)) cfg.cls = cfg.cls?[cfg.cls]:[];
+    cfg.cls.push('button');
 
-    cfg.type = 'div';
-    if (!cfg.text)
-        cfg.text = 'button';
-
-    if (toggle instanceof Binder) {
+    if (pressed instanceof Binder) {
         cfg.handler = function () {
-            toggle.value = !toggle.value;
+            pressed.value = !pressed.value;
         }
-        cfg.cls = (function (q) { return q ? cls + " pressed" : cls; }).binder(toggle);
+        cfg.cls.push('toggle', pressed.ifelse('pressed'));
     }
-    else cfg.cls = cls;
-    return cfg;
-}
 
-DOMFactory.checkbox = function (cfg) {
-    cfg.cls = cfg.cls || '';
-    cfg.cls += ' checkbox';
-    cfg.type = 'button';
-    if (cfg.value) cfg.toggle = cfg.value;
-    return cfg;
+    var el = document.createElement('button');
+    el.apply(cfg);
+    return el;
 }

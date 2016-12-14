@@ -32,16 +32,19 @@ apply(MultiBinder.prototype = Object.create(SingleBinder.prototype),
         },
         set: function(value,source)
         {
-            if (Binder.prototype.set.apply(this, arguments) === NoChanges) return NoChanges;
-            if (!this.fn.set) return;
-
-            var args = this.arguments.clone();
-            args.insert(0,value);
-            var res = this.fn.set.apply(this, args);
-            
-            for (var q = this.argumentBinders.length; q--;) {
-                var arg = this.argumentBinders[q];
-                arg.set(res[arg.id]);
+            if (this._value === value) return NoChanges;
+            if (this.fn.set) {
+                var args = this.arguments.clone();
+                args.insert(0, value);
+                var res = this.fn.set.apply(this, args);
+                if (res === Failed) return Failed;
+                for (var q = this.argumentBinders.length; q--;) {
+                    var arg = this.argumentBinders[q];
+                    if (arg.set(res[arg.id]) === Failed)
+                        //ToDo: undo prev argument value
+                        return Failed;
+                }
             }
+            Binder.prototype.set.apply(this, arguments);
         }
     });

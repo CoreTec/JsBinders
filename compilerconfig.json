@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Styles/FontAwesome/_screen-reader.css",
+    "inputFile": "Styles/FontAwesome/_screen-reader.scss"
+  },
+  {
+    "outputFile": "Styles/FontAwesome/font-awesome.css",
+    "inputFile": "Styles/FontAwesome/font-awesome.scss"
+  },
+  {
+    "outputFile": "Styles/DOMFactory/all.css",
+    "inputFile": "Styles/DOMFactory/all.scss"
+  },
+  {
+    "outputFile": "Styles/Base/all.css",
+    "inputFile": "Styles/Base/all.scss"
+  }
+]

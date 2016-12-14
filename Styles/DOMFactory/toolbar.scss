@@ -1,0 +1,10 @@
+﻿@import "../Base/mixins.scss";
+
+.toolbar{
+    padding:2px 5px;
+    height:24px;
+    display:flex;
+    flex-flow:row;
+    @include gradient(#dedede,  #bbbbbb);
+
+}

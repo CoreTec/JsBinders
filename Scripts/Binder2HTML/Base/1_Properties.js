@@ -26,14 +26,14 @@
     text: function (val) {
         this.innerText = val;
     },
+    defaults:function(val){ this.defaults=val; },
     value: {
         set: function (val) {
             this.value = val;
         },
         onChange: function (fn) {
-            var me = this;
-            this.addEventListener('input', function () {
-                fn(me.value);
+            this.addEventListener('input', function (e) {
+                fn(this.value);
             })
         }
     },

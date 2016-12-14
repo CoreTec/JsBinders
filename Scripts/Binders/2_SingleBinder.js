@@ -49,10 +49,13 @@ apply(SingleBinder.prototype = Object.create(Binder.prototype),
                     return version !== binder.version;
                 },
                 set: function (value) {
+                    if (value === NoChanges)
+                        return;
                     if (value === Reload)
                         return binder.fireUpdate(scope);
-                    if (binder.set(value, scope) === NoChanges)
-                        return;
+                    var state = binder.set(value, scope);
+                    if(state === NoChanges || state === Failed)
+                        return state;
                     me.arguments[id] = value;
                 },
                 attach: function () {
@@ -112,10 +115,14 @@ apply(SingleBinder.prototype = Object.create(Binder.prototype),
         },
         set: function(value,source)
         {
-            if (Binder.prototype.set.apply(this, arguments) === NoChanges) return NoChanges;
-            if (!this.fn.set) return;
-            var args = this.arguments.clone();
-            args.insert(0,value);
-            this.argumentBinder.set(this.fn.set.apply(this, args));
+            if (this._value === value) return NoChanges;
+            if (this.fn.set) {
+                var args = this.arguments.clone();
+                args.insert(0, value);
+                var update = this.fn.set.apply(this, args);
+                if (update === Failed ||
+                    this.argumentBinder.set(update) === Failed) return Failed;
+            }
+            Binder.prototype.set.apply(this, arguments);
         }
     });

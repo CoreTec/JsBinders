@@ -60,11 +60,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Fonts\fontawesome-webfont.woff" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\0_Tools\ClassList.js" />
     <Content Include="Scripts\0_Tools\Array.js" />
     <Content Include="Scripts\Binder2HTML\Base\0_DOMFactory.js" />
     <Content Include="Scripts\Binder2HTML\Base\2_CSSProperties.js" />
-    <Content Include="Scripts\Binder2HTML\Textbox.js" />
+    <Content Include="Scripts\Binder2HTML\Input.js" />
     <Content Include="Scripts\Binder2HTML\Button.js" />
     <Content Include="Scripts\Binder2HTML\Picker.js" />
     <Content Include="Scripts\Binder2HTML\Base\1_Properties.js" />
@@ -79,15 +85,40 @@
     <Content Include="Scripts\Binders\3_MultiBinder.js" />
     <Content Include="Scripts\Binders\0_CallStack.js" />
     <Content Include="Scripts\Binders\1_ValueBinder.js" />
+    <Content Include="Scripts\Binders\Functions\Equal.js" />
     <Content Include="Scripts\Binders\Functions\Template.js" />
     <Content Include="Scripts\Binders\Functions\Field.js" />
-    <Content Include="Test\Test1.js" />
+    <Content Include="Scripts\Tests\Test1.js" />
     <Content Include="Scripts\0_Tools\Apply.js" />
-    <Content Include="Test\Index.html" />
-    <Content Include="Test\IndexDebug1.html">
+    <Content Include="Page\Index.html" />
+    <Content Include="Page\IndexDebug1.html">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IndexDebug.tt</DependentUpon>
+    </Content>
+    <Content Include="Styles\Base\all - Copy.css">
+      <DependentUpon>mixins.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Base\all - Copy.min.css">
+      <DependentUpon>all - Copy.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Base\all.css">
+      <DependentUpon>all.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\Base\all.min.css">
+      <DependentUpon>all.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\DOMFactory\all.css">
+      <DependentUpon>all.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\DOMFactory\all.min.css">
+      <DependentUpon>all.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\FontAwesome\font-awesome.css">
+      <DependentUpon>font-awesome.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\FontAwesome\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -97,10 +128,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Test\IndexDebug.tt">
+    <Content Include="Page\IndexDebug.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IndexDebug1.html</LastGenOutput>
     </Content>
+    <Content Include="Styles\FontAwesome\font-awesome.scss" />
+    <Content Include="Styles\FontAwesome\_animated.scss" />
+    <Content Include="Styles\FontAwesome\_bordered-pulled.scss" />
+    <Content Include="Styles\FontAwesome\_core.scss" />
+    <Content Include="Styles\FontAwesome\_fixed-width.scss" />
+    <Content Include="Styles\FontAwesome\_icons.scss" />
+    <Content Include="Styles\FontAwesome\_larger.scss" />
+    <Content Include="Styles\FontAwesome\_list.scss" />
+    <Content Include="Styles\FontAwesome\_mixins.scss" />
+    <Content Include="Styles\FontAwesome\_path.scss" />
+    <Content Include="Styles\FontAwesome\_rotated-flipped.scss" />
+    <Content Include="Styles\FontAwesome\_screen-reader.scss" />
+    <Content Include="Styles\FontAwesome\_stacked.scss" />
+    <Content Include="Styles\FontAwesome\_variables.scss" />
+    <Content Include="Styles\DOMFactory\button.scss" />
+    <Content Include="Styles\DOMFactory\all.scss" />
+    <Content Include="Styles\Base\all.scss" />
+    <Content Include="Styles\DOMFactory\field.scss" />
+    <Content Include="Styles\DOMFactory\toolbar.scss" />
+    <Content Include="Styles\Base\mixins.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

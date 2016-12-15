@@ -1,5 +1,5 @@
 ﻿window.HTMLExtProperties = {
-    get:function(name){
+    get: function (name) {
         var s = this[name];
         if (s instanceof Function)
             s = this[name] = { set: s };
@@ -26,7 +26,7 @@
     text: function (val) {
         this.innerText = val;
     },
-    defaults:function(val){ this.defaults=val; },
+    defaults: function (val) { this.defaults = val; },
     value: {
         set: function (val) {
             this.value = val;
@@ -37,12 +37,11 @@
             })
         }
     },
-    items:function (val) {
-            this.removeAll();
-            if (Array.isArray(val))
-                for (var q = 0; q < val.length; q++)
-                    this.add(val[q]);
-            else this.add(val);        
+    items: function (val) {
+        this.removeAll();
+        if (Array.isArray(val))
+            val.forEach(this.add,this);
+        else this.add(val);
     },
     handler: function (fn) {
         this.addEventListener('click', fn);

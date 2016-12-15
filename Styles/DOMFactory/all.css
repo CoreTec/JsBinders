@@ -9,9 +9,9 @@
 
 .toolbar {
   padding: 2px 5px;
-  height: 24px;
   display: flex;
   flex-flow: row;
+  flex-wrap: wrap;
   background: #dedede;
   background: -webkit-linear-gradient(-90deg, #dedede, #bbbbbb);
   background: linear-gradient(180deg, #dedede, #bbbbbb); }

@@ -13,6 +13,7 @@ apply(HTMLElement.prototype, {
             this.set(q, cfg[q]);
     },
     set: function (name, value) {
+        if (value === undefined) return;
         var property = HTMLExtProperties.get(name);
         if (!property) return;
         if (!(value instanceof Binder)) 
@@ -73,10 +74,18 @@ apply(HTMLElement.prototype, {
         if (this.rendered)
             el.onRender();
     },
-    remove:function(el)
-    {
+    replace: function (old,el) {
+        this.insertBefore(el, old);
+        this.removeChild(old);
+        if (this.rendered) {
+            el.onRender();
+            old.onRemove();
+        }
+    },
+    remove: function (el) {
         this.removeChild(el);
-        el.onRemove();
+        if (this.rendered)
+            el.onRemove();
     },
     removeAll:function(){
         while (this.firstChild)

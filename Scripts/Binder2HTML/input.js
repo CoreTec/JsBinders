@@ -1,4 +1,4 @@
-﻿DOMFactory.field = function(cfg)
+﻿DOMFactory.input = function(cfg)
 {
     if (cfg.text)
     {
@@ -15,6 +15,9 @@
         }];
         delete cfg.text;
         delete cfg.value;
+        return cfg;
     }
-    return cfg;
+    var el = document.createElement('input');
+    el.apply(cfg);
+    return el;
 }

@@ -2,9 +2,10 @@
 
 .toolbar{
     padding:2px 5px;
-    height:24px;
+   
     display:flex;
     flex-flow:row;
+    flex-wrap:wrap;
     @include gradient(#dedede,  #bbbbbb);
 
 }

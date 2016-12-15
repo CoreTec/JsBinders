@@ -66,10 +66,12 @@
     </None>
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\0_Tools\Object.js" />
     <Content Include="Scripts\0_Tools\ClassList.js" />
     <Content Include="Scripts\0_Tools\Array.js" />
     <Content Include="Scripts\Binder2HTML\Base\0_DOMFactory.js" />
     <Content Include="Scripts\Binder2HTML\Base\2_CSSProperties.js" />
+    <Content Include="Scripts\Binder2HTML\Tabs.js" />
     <Content Include="Scripts\Binder2HTML\Input.js" />
     <Content Include="Scripts\Binder2HTML\Button.js" />
     <Content Include="Scripts\Binder2HTML\Picker.js" />
@@ -88,6 +90,10 @@
     <Content Include="Scripts\Binders\Functions\Equal.js" />
     <Content Include="Scripts\Binders\Functions\Template.js" />
     <Content Include="Scripts\Binders\Functions\Field.js" />
+    <Content Include="Scripts\Tests\Test3.js" />
+    <Content Include="Scripts\Tests\Test4.js" />
+    <Content Include="Scripts\Tests\Test2.js" />
+    <Content Include="Scripts\Tests\TestLoad.js" />
     <Content Include="Scripts\Tests\Test1.js" />
     <Content Include="Scripts\0_Tools\Apply.js" />
     <Content Include="Page\Index.html" />

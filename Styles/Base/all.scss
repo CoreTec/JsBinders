@@ -12,3 +12,10 @@
     box-sizing:border-box;
     padding:100px;
 }
+
+input{
+    min-width:0px;
+}
+div{
+    flex-shrink:0;
+}

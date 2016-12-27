@@ -16,6 +16,10 @@
                     {
                         text: 'Test4',
                         type: 'Test4'
+                    },
+                    {
+                        text: 'CallStack',
+                        type: 'CallStackTest'
                     }
     ];
 

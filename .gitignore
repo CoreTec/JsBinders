@@ -1,3 +1,4 @@
 #Visual Studio Project and SCSS compiler config
 vwd.webinfo
 compilerconfig.json.defaults
+compilerconfig.json

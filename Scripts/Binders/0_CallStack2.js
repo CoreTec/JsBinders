@@ -1,72 +1,55 @@
 ﻿function CallStack2() {
-    var blocks = [];// blocks with same priority
+    var blocks = [];
     var root = null;
 
     var handle = function () {
-        var r;
-        while ((r=root) !== null) {
-            r.pop()();
-            if (r.length === 0)
-                removeBlock(r);
-        }
+        var fn;
+        //ToDo: optimize?
+        while (root !== null) {
+            var fn = root.pop();
+            if (root.length === 0)
+                removeBlock(root);
+            fn();
+        }      
     }
+
     var ensureLength = function (len) {
-        if (blocks.length > len) return;
-        for (var q = blocks.length; q <= len; q++) {
-            var block = blocks[q] = [];
-            block.id = q;
-            block.next = null;
-        }
+        for (var q = blocks.length; q <= len; q++)
+            (blocks[q] = []).id=q;
     }
-    var addBlock = function (block) {
-        //if already active
-        if (block.length !== 0) return;
 
-        if (root === null) {
-            root = block;
-            //autoinvoke on add root
-            window.setTimeout(handle, 1);
-            return;
-        }
-        if (root.id > block.id) {
-            block.next = root.id;
-            root = block;
-            return;
-        }
-
-        var x = root;
-        while (true) {
-            if (x.next === null) {
-                x.next = block.id;
-                return;
-            }
-            if (x.next > block.id) {
-                block.next = x.next;
-                x.next = block.id;
-                return;
-            }
-            x = blocks[x.next];
-        }
-    }
     var removeBlock = function (block) {
-        if (block === root) {
-            if (root.next !== null)
-                root = blocks[root.next];
-            else root = null;
-            block.next = null;
+        if (block === root) 
+            return root = root.next;
+
+        //kinda rare case so whatever
+        var x = root;
+        while (x.next !== block) x = x.next;
+        x.next = block.next;
+    }
+
+    this.add = function (fn) {
+        //autoinvoke on add root
+        if (root === null)
+            window.setTimeout(handle, 1);
+
+        var block = blocks[fn.priority];
+
+        //if block was empty
+        if (block.push(fn) !== 1) return;
+
+        if (root === null || root.id > block.id) {
+            block.next = root;
+            root = block;
             return;
         }
-        for(var q=root.id;;q++)
-            if (blocks[q].next === block.id) {
-                block[q].next = block.next;
-                block.next = null;
-            }
+
+        //searching position to insert
+        var x = root;
+        while (x.next !== null && x.next.id < block.id) x = x.next;
+        block.next = x.next;
+        x.next = block;
     }
-    this.add = function (fn) {
-       // ensureLength(fn.priority);
-        var block = blocks[fn.priority];
-        addBlock(block);
-        block.push(fn);
-    }
+
     ensureLength(20000);
 }

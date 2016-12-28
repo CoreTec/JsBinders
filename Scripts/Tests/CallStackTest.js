@@ -1,16 +1,16 @@
 ﻿DOMFactory.CallStackTest = function () {
     var c1 = new Binder(0);
     var c2 = new Binder(0);
+    var cs=new CallStack();
+    var cs2 = new CallStack2();
 
     var f1 = function (data) {
-        var cs=new CallStack();
         for (var q = 0; q < data.length; q++)
             cs.add(data[q]);
     }
     var f2 = function (data) {
-        var cs = new CallStack2();
         for (var q = 0; q < data.length; q++)
-            cs.add(data[q]);
+            cs2.add(data[q]);
     }
     return {
         type: 'div',
@@ -21,7 +21,7 @@
                 handler: function () {
                     var max = 1000;
                     var maxPriority = 100;
-                    var count = 100;
+                    var count = 1000;
                     var data = new Array(max);
                     var c = 1;
                     for (var q = 1; q < data.length; q++)
